@@ -1,0 +1,75 @@
+import React, { useState, useEffect } from 'react';
+import useFinanceStore from './store/useFinanceStore';
+import Sidebar from './components/layout/Sidebar';
+import Header from './components/layout/Header';
+import DashboardPage from './pages/DashboardPage';
+import TransactionsPage from './pages/TransactionsPage';
+import { cn } from './utils/cn';
+
+function App() {
+  const { isDarkMode } = useFinanceStore();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return <DashboardPage />;
+      case 'transactions':
+        return <TransactionsPage />;
+      case 'insights':
+        // Reuse DashboardPage for now since it includes InsightsPanel
+        return <DashboardPage />;
+      default:
+        return <DashboardPage />;
+    }
+  };
+
+  const getPageTitle = () => {
+    switch (activeTab) {
+      case 'dashboard': return 'Dashboard Overview';
+      case 'transactions': return 'Transaction History';
+      case 'insights': return 'Financial Insights';
+      default: return 'Finance Dashboard';
+    }
+  };
+
+  return (
+    <div className={cn(
+      "min-h-screen bg-background font-sans transition-colors duration-300 antialiased",
+      isDarkMode ? "dark" : ""
+    )}>
+      <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+      
+      <div className="flex flex-col lg:pl-64 min-h-screen">
+        <Header title={getPageTitle()} />
+        
+        <main className="flex-1 p-6 lg:p-10 max-w-7xl mx-auto w-full">
+          {renderContent()}
+        </main>
+
+        <footer className="py-6 px-10 border-t border-border mt-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2026 Zorvyn Finance. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
+              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
+              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Support</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+export default App;
