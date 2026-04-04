@@ -4,12 +4,12 @@ import { cn } from "../../utils/cn";
 export const Button = React.forwardRef(
   ({ className, variant = "primary", size = "md", ...props }, ref) => {
     const variants = {
-      primary: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 shadow-[0_8px_16px_-4px_hsla(var(--primary),0.3)] hover:shadow-[0_12px_20px_-4px_hsla(var(--primary),0.4)]",
+      primary: "bg-[#558776] text-white hover:opacity-90 shadow-[0_8px_16px_-4px_rgba(85,135,118,0.4)] hover:shadow-[0_12px_20px_-4px_rgba(85,135,118,0.5)]",
       secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       destructive: "bg-gradient-to-r from-danger to-rose-600 text-primary-foreground hover:opacity-90 shadow-[0_8px_16px_-4px_hsla(var(--destructive),0.3)]",
-      outline: "border-2 border-primary/20 bg-background text-primary hover:bg-primary/5 hover:border-primary/40",
+      outline: "border-2 border-[#558776]/20 bg-background text-[#558776] hover:bg-[#558776]/5 hover:border-[#558776]/40",
       ghost: "hover:bg-accent/10 hover:text-accent-foreground",
-      link: "text-primary underline-offset-4 hover:underline",
+      link: "text-[#558776] underline-offset-4 hover:underline",
     };
 
     const sizes = {

@@ -53,7 +53,9 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
             <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Description</th>
             <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Category</th>
             <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-right">Amount</th>
-            <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Actions</th>
+            {role === 'admin' && (
+              <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Actions</th>
+            )}
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
@@ -84,8 +86,8 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
               )}>
                 {transaction.type === 'income' ? '+' : '-'}${Math.abs(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </td>
-              <td className="px-6 py-4 text-center">
-                 {role === 'admin' ? (
+              {role === 'admin' && (
+                <td className="px-6 py-4 text-center">
                    <div className="flex items-center justify-center gap-2">
                      <Button 
                        variant="ghost" 
@@ -104,10 +106,8 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                        <Trash2 className="w-4 h-4" />
                      </Button>
                    </div>
-                 ) : (
-                   <span className="text-xs text-muted-foreground px-2 py-1 bg-secondary rounded">Read Only</span>
-                 )}
-              </td>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

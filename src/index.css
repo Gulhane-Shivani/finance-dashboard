@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #6366f1; /* Indigo-500 */
+  --color-primary: #558776;
+  /* Sage Green */
   --color-primary-foreground: #ffffff;
   --color-secondary: #f8fafc;
   --color-secondary-foreground: #1e293b;
-  --color-accent: #8b5cf6; /* Violet-500 */
+  --color-accent: #8b5cf6;
+  /* Violet-500 */
   --color-success: #10b981;
-  --color-danger: #f43f5e; /* Rose-500 */
+  --color-danger: #f43f5e;
+  /* Rose-500 */
   --color-warning: #f59e0b;
 }
 
@@ -62,11 +65,12 @@
   * {
     border-color: var(--border);
   }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: 'Inter', sans-serif;
-    background-image: 
+    background-image:
       radial-gradient(at 0% 0%, hsla(238, 83%, 66%, 0.05) 0px, transparent 50%),
       radial-gradient(at 100% 0%, hsla(262, 83%, 57%, 0.05) 0px, transparent 50%);
     background-attachment: fixed;

@@ -9,11 +9,11 @@ const NavItem = ({ icon: Icon, label, active, onClick }) => (
     className={cn(
       "flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 w-full group relative overflow-hidden",
       active 
-        ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[0_8px_16px_-4px_hsla(var(--primary),0.3)]" 
-        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+        ? "bg-[#558776] text-white shadow-[0_8px_16px_-4px_rgba(85,135,118,0.4)] scale-105" 
+        : "text-muted-foreground hover:bg-[#558776]/10 hover:text-[#558776]"
     )}
   >
-    <Icon className={cn("w-5 h-5 transition-transform duration-300", active ? "text-primary-foreground scale-110" : "group-hover:text-foreground group-hover:scale-110")} />
+    <Icon className={cn("w-5 h-5 transition-transform duration-300", active ? "text-white scale-110" : "group-hover:text-[#558776] group-hover:scale-110")} />
     <span className="font-semibold">{label}</span>
     {active && (
       <span className="absolute right-2 w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse"></span>
@@ -27,10 +27,10 @@ const Sidebar = ({ activeTab, onTabChange }) => {
   return (
     <aside className="fixed left-0 top-0 h-full w-64 bg-card border-r border-border p-6 hidden lg:flex flex-col z-50 sidebar-gradient">
       <div className="flex items-center gap-3 mb-10 px-2 group cursor-pointer">
-        <div className="w-11 h-11 bg-gradient-to-br from-primary via-accent to-indigo-400 rounded-2xl flex items-center justify-center shadow-[0_10px_20px_-10px_hsla(var(--primary),0.5)] group-hover:scale-110 transition-all duration-500">
+        <div className="w-11 h-11 bg-[#558776] rounded-2xl flex items-center justify-center shadow-[0_10px_20px_-10px_rgba(85,135,118,0.5)] group-hover:scale-110 transition-all duration-500">
           <PieChart className="text-white w-6 h-6" />
         </div>
-        <h1 className="text-2xl font-extrabold tracking-tighter bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Zorvyn Fin</h1>
+        <h1 className="text-2xl font-extrabold tracking-tighter text-[#558776]">Zorvyn Fin</h1>
       </div>
 
       <nav className="flex-1 space-y-3">
@@ -46,19 +46,14 @@ const Sidebar = ({ activeTab, onTabChange }) => {
           active={activeTab === 'transactions'} 
           onClick={() => onTabChange('transactions')} 
         />
-        <NavItem 
-          icon={PieChart} 
-          label="Insights" 
-          active={activeTab === 'insights'} 
-          onClick={() => onTabChange('insights')} 
-        />
+        
       </nav>
 
       <div className="mt-auto pt-6 border-t border-border/50">
         <div className="bg-gradient-to-br from-secondary/80 to-background/50 rounded-3xl p-5 border border-border shadow-sm">
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-12 h-12 bg-gradient-to-tr from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center border border-primary/20 shadow-inner">
-              <User className="w-7 h-7 text-primary" />
+            <div className="w-12 h-12 bg-[#558776]/10 rounded-2xl flex items-center justify-center border border-[#558776]/20 shadow-inner">
+              <User className="w-7 h-7 text-[#558776]" />
             </div>
             <div>
               <p className="text-sm font-bold truncate leading-tight">Alex Rivera</p>
@@ -71,7 +66,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
               onClick={() => setRole('viewer')}
               className={cn(
                 "flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-[11px] font-bold transition-all duration-300 uppercase tracking-tight",
-                role === 'viewer' ? "bg-white dark:bg-card shadow-lg text-primary" : "text-muted-foreground hover:text-foreground"
+                role === 'viewer' ? "bg-[#558776] shadow-lg text-white" : "text-muted-foreground hover:text-[#558776]"
               )}
             >
               <User className="w-3.5 h-3.5" /> Viewer
@@ -80,7 +75,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
               onClick={() => setRole('admin')}
               className={cn(
                 "flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-[11px] font-bold transition-all duration-300 uppercase tracking-tight",
-                role === 'admin' ? "bg-white dark:bg-card shadow-lg text-primary" : "text-muted-foreground hover:text-foreground"
+                role === 'admin' ? "bg-[#558776] shadow-lg text-white" : "text-muted-foreground hover:text-[#558776]"
               )}
             >
               <ShieldCheck className="w-3.5 h-3.5" /> Admin
