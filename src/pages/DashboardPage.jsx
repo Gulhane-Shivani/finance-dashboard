@@ -4,6 +4,7 @@ import useFinanceStore from '../store/useFinanceStore';
 import SummaryCard from '../components/dashboard/SummaryCard';
 import OverviewChart from '../components/dashboard/OverviewChart';
 import InsightsPanel from '../components/dashboard/InsightsPanel';
+import SpendingBreakdownChart from '../components/dashboard/SpendingBreakdownChart';
 import TransactionTable from '../components/transactions/TransactionTable';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 
@@ -62,8 +63,9 @@ const DashboardPage = () => {
           </Card>
         </div>
 
-        <div className="xl:col-span-1">
+        <div className="xl:col-span-1 space-y-8">
           <InsightsPanel />
+          <SpendingBreakdownChart />
         </div>
       </div>
     </div>

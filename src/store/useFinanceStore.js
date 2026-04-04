@@ -8,6 +8,7 @@ const useFinanceStore = create(
       transactions: mockTransactions,
       role: 'admin', // 'admin' or 'viewer'
       isDarkMode: false,
+      isSidebarOpen: false,
       filters: {
         search: '',
         category: 'All',
@@ -18,6 +19,7 @@ const useFinanceStore = create(
 
       setRole: (role) => set({ role }),
       toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })),
+      setSidebarOpen: (isOpen) => set({ isSidebarOpen: isOpen }),
       
       setFilters: (newFilters) => 
         set((state) => ({ filters: { ...state.filters, ...newFilters } })),
