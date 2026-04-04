@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Bell, Sun, Moon, LogOut, Menu, X } from 'lucide-react';
 import useFinanceStore from '../../store/useFinanceStore';
 import { Button } from '../ui/Button';
@@ -8,10 +8,32 @@ import { CURRENCIES } from '../../utils/currency';
 
 const Header = ({ title }) => {
   const { isDarkMode, toggleDarkMode, filters, setFilters, isSidebarOpen, setSidebarOpen, currency, setCurrency } = useFinanceStore();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 60) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <header className="sticky top-6 z-40 px-6 transition-all duration-300 flex justify-center">
-      <div className="bg-[#558776] text-white h-16 rounded-2xl flex items-center justify-between px-4 lg:px-6 shadow-[0_20px_50px_-20px_rgba(85,135,118,0.6)] w-full max-w-5xl">
+    <header className={cn(
+      "sticky top-6 z-40 px-6 transition-all duration-500 ease-in-out flex justify-end",
+      isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0 pointer-events-none"
+    )}>
+      <div className="bg-[#558776] text-white h-16 rounded-[50px] flex items-center justify-between px-4 lg:px-6 shadow-[0_20px_50px_-20px_rgba(85,135,118,0.6)] w-full lg:w-[60%] lg:min-w-[700px]">
         
         {/* Left Side: Mobile Menu & Title */}
         <div className="flex items-center gap-3 flex-1">
@@ -28,8 +50,8 @@ const Header = ({ title }) => {
         </div>
 
         {/* Center: Search (Visible on md+) */}
-        <div className="hidden md:flex items-center flex-[1.5] justify-center mx-4">
-          <div className="relative w-full group max-w-md">
+        <div className="hidden md:flex items-center flex-[1.2] justify-center mx-2 lg:mx-4">
+          <div className="relative w-full group max-w-sm">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 group-focus-within:text-white transition-colors" />
             <input 
               type="text"
