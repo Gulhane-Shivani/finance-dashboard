@@ -66,59 +66,72 @@ const TransactionsPage = () => {
         </div>
       </div>
 
-      <Card className="border-none shadow-sm">
-        <CardHeader className="border-b border-border bg-secondary/10 pb-4">
-          <div className="flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
-            <div className="relative flex-1 max-w-sm">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Search description..."
-                className="pl-10 rounded-xl bg-card border-border"
-                value={filters.search}
-                onChange={(e) => setFilters({ search: e.target.value })}
+      <div className="pb-2">
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between px-1">
+          
+          <div className="relative flex items-center w-full lg:max-w-md h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
+            <div className="pl-5 pointer-events-none">
+              <Search className="w-5 h-5 text-slate-400 stroke-[2.5]" />
+            </div>
+            <Input
+              placeholder="Explore transactions..."
+              className="w-full h-full bg-transparent !border-none !shadow-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 font-bold text-slate-600 dark:text-slate-300 placeholder:text-slate-400 placeholder:font-semibold px-3 rounded-full"
+              value={filters.search}
+              onChange={(e) => setFilters({ search: e.target.value })}
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-5 w-full lg:w-auto">
+            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
+              <div className="pl-5 pointer-events-none">
+                <Filter className="w-5 h-5 text-slate-400 stroke-[2.5]" />
+              </div>
+              <Select
+                className="w-[160px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                options={['All Categories', ...categories].map(c => ({ label: c, value: c === 'All Categories' ? 'All' : c }))}
+                value={filters.category}
+                onChange={(e) => setFilters({ category: e.target.value })}
+              />
+            </div>
+            
+            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
+              <div className="pl-5 pointer-events-none">
+                <Filter className="w-5 h-5 text-slate-400 stroke-[2.5]" />
+              </div>
+              <Select
+                className="w-[140px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                options={[
+                  { label: 'All Types', value: 'All' },
+                  { label: 'Income', value: 'income' },
+                  { label: 'Expense', value: 'expense' }
+                ]}
+                value={filters.type}
+                onChange={(e) => setFilters({ type: e.target.value })}
               />
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground uppercase">Category</span>
-                <Select
-                  className="w-36 h-9 rounded-lg"
-                  options={['All', ...categories].map(c => ({ label: c, value: c }))}
-                  value={filters.category}
-                  onChange={(e) => setFilters({ category: e.target.value })}
-                />
-              </div>
+            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 hidden sm:block mx-1"></div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground uppercase">Type</span>
-                <Select
-                  className="w-32 h-9 rounded-lg"
-                  options={[
-                    { label: 'All Types', value: 'All' },
-                    { label: 'Income', value: 'income' },
-                    { label: 'Expense', value: 'expense' }
-                  ]}
-                  value={filters.type}
-                  onChange={(e) => setFilters({ type: e.target.value })}
-                />
+            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
+              <div className="pl-5 pointer-events-none">
+                <SortAsc className="w-5 h-5 text-slate-400 stroke-[2.5]" />
               </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground uppercase">Sort</span>
-                <Select
-                  className="w-32 h-9 rounded-lg"
-                  options={[
-                    { label: 'Date', value: 'date' },
-                    { label: 'Amount', value: 'amount' }
-                  ]}
-                  value={filters.sortBy}
-                  onChange={(e) => setFilters({ sortBy: e.target.value })}
-                />
-              </div>
+              <Select
+                className="w-[140px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                options={[
+                  { label: 'Sort: Date', value: 'date' },
+                  { label: 'Sort: Amount', value: 'amount' }
+                ]}
+                value={filters.sortBy}
+                onChange={(e) => setFilters({ sortBy: e.target.value })}
+              />
             </div>
           </div>
-        </CardHeader>
+
+        </div>
+      </div>
+
+      <Card className="border-none shadow-sm overflow-hidden bg-card">
         <CardContent className="p-0">
           <TransactionTable onEdit={handleEdit} />
         </CardContent>

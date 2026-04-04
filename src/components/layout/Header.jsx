@@ -39,7 +39,7 @@ const Header = ({ title }) => {
         <div className="flex items-center gap-3 flex-1">
           <button 
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all border border-white/10"
+            className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all border border-white/10"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -56,7 +56,7 @@ const Header = ({ title }) => {
             <input 
               type="text"
               placeholder="Quick search..." 
-              className="w-full pl-11 h-10 bg-white/10 border-none text-white text-sm rounded-xl focus:bg-white/15 transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
+              className="w-full pl-11 h-10 bg-white/10 !border-none text-white text-sm rounded-full focus:bg-white/15 transition-all placeholder:text-white/40 focus:outline-none focus:ring-0 focus-visible:ring-0"
               value={filters.search}
               onChange={(e) => setFilters({ search: e.target.value })}
             />
@@ -66,7 +66,7 @@ const Header = ({ title }) => {
         {/* Right Side: Actions */}
         <div className="flex items-center gap-2 lg:gap-3 flex-1 justify-end">
           {/* Mobile Search Button */}
-          <button className="md:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all">
+          <button className="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all">
             <Search className="w-4.5 h-4.5" />
           </button>
 
@@ -74,8 +74,7 @@ const Header = ({ title }) => {
             <select
               value={currency.code}
               onChange={(e) => setCurrency(e.target.value)}
-              className="h-10 bg-white/10 text-white text-sm font-semibold tracking-wide rounded-xl border-none outline-none focus:ring-1 focus:ring-white/20 px-3 cursor-pointer appearance-none transition-all hover:bg-white/20"
-              style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.5rem center', backgroundSize: '1em', paddingRight: '2.2rem' }}
+              className="h-10 bg-white/10 text-white text-sm font-semibold tracking-wide rounded-full !border-none outline-none focus:outline-none focus-visible:ring-0 focus:ring-0 px-4 cursor-pointer appearance-none transition-all hover:bg-white/20"
             >
               {CURRENCIES.map(c => (
                 <option key={c.code} value={c.code} className="bg-[#558776] text-white font-medium">
@@ -87,7 +86,7 @@ const Header = ({ title }) => {
 
           <button
             onClick={toggleDarkMode}
-            className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all group overflow-hidden relative"
+            className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all group overflow-hidden relative"
           >
             <div className={cn("transition-all duration-500", isDarkMode ? "scale-0 rotate-90" : "scale-100 rotate-0")}>
               <Sun className="w-4.5 h-4.5" />
@@ -97,14 +96,14 @@ const Header = ({ title }) => {
             </div>
           </button>
           
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all relative">
+          <button className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all relative">
             <Bell className="w-4.5 h-4.5" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#558776]"></span>
+            <span className="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#558776]"></span>
           </button>
 
           <div className="h-8 w-px bg-white/10 mx-1 hidden sm:block"></div>
           
-          <button className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 text-white group transition-all">
+          <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 text-white group transition-all">
             <LogOut className="w-4.5 h-4.5 text-rose-300 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
