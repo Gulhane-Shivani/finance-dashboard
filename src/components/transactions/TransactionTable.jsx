@@ -5,9 +5,10 @@ import useFinanceStore from '../../store/useFinanceStore';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { cn } from '../../utils/cn';
+import { formatCurrency } from '../../utils/currency';
 
 const TransactionTable = ({ onEdit, itemsCount }) => {
-  const { transactions, filters, role, deleteTransaction } = useFinanceStore();
+  const { transactions, filters, role, deleteTransaction, currency } = useFinanceStore();
 
   // Apply filters
   const filteredTransactions = transactions.filter((t) => {
@@ -84,7 +85,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                 "px-6 py-4 text-right font-bold text-sm",
                 transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
               )}>
-                {transaction.type === 'income' ? '+' : '-'}${Math.abs(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
               </td>
               {role === 'admin' && (
                 <td className="px-6 py-4 text-center">

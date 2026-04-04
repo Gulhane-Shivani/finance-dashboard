@@ -3,6 +3,7 @@ import { Lightbulb, Target, TrendingUp, HandCoins, ArrowDownRight, ArrowUpRight 
 import useFinanceStore from '../../store/useFinanceStore';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { cn } from '../../utils/cn';
+import { formatCurrency } from '../../utils/currency';
 
 const InsightCard = ({ icon: Icon, title, value, type, description }) => (
   <div className="flex gap-4 p-4 rounded-2xl bg-secondary/30 border border-border border-dashed transition-all hover:border-primary/20 hover:bg-secondary/50">
@@ -21,7 +22,7 @@ const InsightCard = ({ icon: Icon, title, value, type, description }) => (
 );
 
 const InsightsPanel = () => {
-  const { transactions } = useFinanceStore();
+  const { transactions, currency } = useFinanceStore();
 
   // Calculate insights
   const income = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0);
@@ -61,13 +62,13 @@ const InsightsPanel = () => {
           title="Highest Spending" 
           value={highestCategory[0]}
           type="error"
-          description={`You've spent $${highestCategory[1].toLocaleString()} in ${highestCategory[0]} this period.`}
+          description={`You've spent ${formatCurrency(highestCategory[1], currency)} in ${highestCategory[0]} this period.`}
         />
 
         <InsightCard 
           icon={HandCoins} 
           title="Total Net Worth" 
-          value={`$${savings.toLocaleString()}`}
+          value={formatCurrency(savings, currency)}
           type={savings > 0 ? 'success' : 'error'}
           description="Total balance across all your income streams and expenses."
         />

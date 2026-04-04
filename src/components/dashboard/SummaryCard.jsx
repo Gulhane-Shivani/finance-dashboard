@@ -2,8 +2,11 @@ import React from 'react';
 import { TrendingUp, TrendingDown, Wallet, DollarSign, HandCoins } from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 import { cn } from '../../utils/cn';
+import useFinanceStore from '../../store/useFinanceStore';
+import { formatCurrency } from '../../utils/currency';
 
 const SummaryCard = ({ title, amount, trend, icon: Icon, color }) => {
+  const { currency } = useFinanceStore();
   const isPositive = trend > 0;
   
   return (
@@ -40,7 +43,7 @@ const SummaryCard = ({ title, amount, trend, icon: Icon, color }) => {
         
         <p className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-widest">{title}</p>
         <h3 className="text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
-          ${Math.abs(amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+          {formatCurrency(amount, currency)}
         </h3>
       </CardContent>
     </Card>

@@ -4,9 +4,10 @@ import useFinanceStore from '../../store/useFinanceStore';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { cn } from '../../utils/cn';
+import { CURRENCIES } from '../../utils/currency';
 
 const Header = ({ title }) => {
-  const { isDarkMode, toggleDarkMode, filters, setFilters, isSidebarOpen, setSidebarOpen } = useFinanceStore();
+  const { isDarkMode, toggleDarkMode, filters, setFilters, isSidebarOpen, setSidebarOpen, currency, setCurrency } = useFinanceStore();
 
   return (
     <header className="sticky top-6 z-40 px-6 transition-all duration-300 flex justify-center">
@@ -46,6 +47,21 @@ const Header = ({ title }) => {
           <button className="md:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all">
             <Search className="w-4.5 h-4.5" />
           </button>
+
+          <div className="hidden sm:block">
+            <select
+              value={currency.code}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="h-10 bg-white/10 text-white text-sm font-semibold tracking-wide rounded-xl border-none outline-none focus:ring-1 focus:ring-white/20 px-3 cursor-pointer appearance-none transition-all hover:bg-white/20"
+              style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.5rem center', backgroundSize: '1em', paddingRight: '2.2rem' }}
+            >
+              {CURRENCIES.map(c => (
+                <option key={c.code} value={c.code} className="bg-[#558776] text-white font-medium">
+                  {c.code} ({c.symbol})
+                </option>
+              ))}
+            </select>
+          </div>
 
           <button
             onClick={toggleDarkMode}

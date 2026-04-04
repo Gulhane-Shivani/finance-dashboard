@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { mockTransactions } from '../data/mockData';
+import { CURRENCIES } from '../utils/currency';
 
 const useFinanceStore = create(
   persist(
     (set) => ({
       transactions: mockTransactions,
       role: 'admin', // 'admin' or 'viewer'
+      currency: CURRENCIES[0],
       isDarkMode: false,
       isSidebarOpen: false,
       filters: {
@@ -18,6 +20,7 @@ const useFinanceStore = create(
       },
 
       setRole: (role) => set({ role }),
+      setCurrency: (code) => set({ currency: CURRENCIES.find(c => c.code === code) || CURRENCIES[0] }),
       toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })),
       setSidebarOpen: (isOpen) => set({ isSidebarOpen: isOpen }),
       

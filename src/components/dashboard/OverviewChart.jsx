@@ -13,8 +13,20 @@ import {
 } from 'recharts';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { chartData } from '../../data/mockData';
+import useFinanceStore from '../../store/useFinanceStore';
+import { formatCurrency } from '../../utils/currency';
 
 const OverviewChart = ({ type = 'area' }) => {
+  const { currency } = useFinanceStore();
+  
+  const formatYAxis = (value) => {
+    return `${currency.symbol}${Math.abs(value * currency.rate).toLocaleString(undefined, { maximumSignificantDigits: 3 })}`;
+  };
+  
+  const formatTooltip = (value) => {
+    return formatCurrency(value, currency);
+  };
+
   return (
     <Card className="h-96">
       <CardHeader>
@@ -54,9 +66,10 @@ const OverviewChart = ({ type = 'area' }) => {
                 tickLine={false}
                 tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }}
                 dx={-10}
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={formatYAxis}
               />
               <Tooltip
+                formatter={formatTooltip}
                 contentStyle={{
                   borderRadius: '16px',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -100,9 +113,10 @@ const OverviewChart = ({ type = 'area' }) => {
                 tickLine={false}
                 tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }}
                 dx={-10}
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={formatYAxis}
               />
               <Tooltip
+                formatter={formatTooltip}
                 contentStyle={{
                   borderRadius: '16px',
                   border: '1px solid rgba(255, 255, 255, 0.1)',

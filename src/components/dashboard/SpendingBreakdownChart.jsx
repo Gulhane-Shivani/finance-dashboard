@@ -3,11 +3,12 @@ import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Tooltip, 
 import { PieChart as PieChartIcon } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import useFinanceStore from '../../store/useFinanceStore';
+import { formatCurrency } from '../../utils/currency';
 
 const COLORS = ['#10b981', '#f43f5e', '#f59e0b', '#3b82f6', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316'];
 
 const SpendingBreakdownChart = () => {
-  const { transactions } = useFinanceStore();
+  const { transactions, currency } = useFinanceStore();
 
   const expenseData = transactions
     .filter(t => t.type === 'expense')
@@ -46,7 +47,7 @@ const SpendingBreakdownChart = () => {
                 ))}
               </Pie>
               <Tooltip 
-                formatter={(value) => `$${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}`}
+                formatter={(value) => formatCurrency(value, currency)}
                 contentStyle={{
                   borderRadius: '16px',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
