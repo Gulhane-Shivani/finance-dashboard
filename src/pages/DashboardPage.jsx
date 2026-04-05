@@ -123,7 +123,7 @@ const DashboardPage = () => {
         <div className="xl:col-span-2 space-y-8">
           <OverviewChart />
 
-          <Card>
+          <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Recent Transactions</CardTitle>
               <button className="text-sm font-medium text-primary hover:underline">View All</button>

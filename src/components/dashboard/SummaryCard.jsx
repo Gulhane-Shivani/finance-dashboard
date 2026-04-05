@@ -80,11 +80,6 @@ const SummaryCard = ({ title, amount, trend, chartType, isRaw = false }) => {
         </div>
       </div>
 
-      <div className="px-4 pb-4 pt-0">
-        <button className="w-full bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs h-8 rounded-lg flex items-center justify-center gap-1.5 transition-colors border border-slate-100 dark:border-slate-700/50 group">
-          Inspect <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-        </button>
-      </div>
     </Card>
   );
 };

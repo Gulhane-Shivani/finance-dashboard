@@ -45,7 +45,22 @@ const useFinanceStore = create(
         })),
     }),
     {
-      name: 'finance-storage', // name of the item in localStorage
+      name: 'finance-storage',
+      version: 3,
+      migrate: () => ({
+        transactions: mockTransactions,
+        role: 'admin',
+        currency: CURRENCIES[0],
+        isDarkMode: false,
+        isSidebarOpen: false,
+        filters: {
+          search: '',
+          category: 'All',
+          type: 'All',
+          sortBy: 'date',
+          sortOrder: 'desc',
+        },
+      }),
     }
   )
 );
