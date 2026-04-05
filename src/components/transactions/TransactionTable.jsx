@@ -63,7 +63,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
       {/* Mobile Card View */}
       <div className="lg:hidden space-y-4 p-4">
         {displayedTransactions.map((transaction) => (
-                    <div
+          <div
             key={transaction.id}
             className="bg-card rounded-xl border border-border p-4 shadow-sm"
           >
@@ -75,7 +75,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                 )}>
                   {transaction.type === 'income' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
                 </div>
-                                <div>
+                <div>
                   <p className="font-bold text-foreground leading-none mb-1">{transaction.description}</p>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{format(new Date(transaction.date), 'MMM dd, yyyy')}</p>
                 </div>
@@ -85,7 +85,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
               </span>
             </div>
 
-                        <div className="flex items-center justify-between pt-3 border-t border-border">
+            <div className="flex items-center justify-between pt-3 border-t border-border">
               <div className={cn(
                 "text-base font-black",
                 transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
@@ -120,53 +120,53 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
 
       {/* Desktop Table View */}
       <div className="hidden lg:block w-full">
-        <table className="w-full text-left border-collapse table-fixed">
+        <table className="w-full text-left border-collapse table-auto">
           <thead>
-                        <tr className="border-b border-border bg-muted/30">
-              <th className="w-[110px] px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Date</th>
-              <th className="px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left">Description</th>
-              <th className="w-[120px] px-2 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">Category</th>
-              <th className="w-[120px] px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-right">Amount</th>
+            <tr className="border-b border-border bg-muted/30">
+              <th className="px-4 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-left whitespace-nowrap">Date</th>
+              <th className="px-4 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-left">Description</th>
+              <th className="px-4 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Category</th>
+              <th className="px-4 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right whitespace-nowrap">Amount</th>
               {role === 'admin' && (
-                <th className="w-[100px] px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">Actions</th>
+                <th className="px-4 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center whitespace-nowrap">Actions</th>
               )}
             </tr>
           </thead>
-                    <tbody className="divide-y divide-border">
+          <tbody className="divide-y divide-border">
             {displayedTransactions.map((transaction) => (
-                            <tr key={transaction.id} className="group hover:bg-muted/50 transition-colors duration-150">
-                <td className="px-4 py-5 text-sm text-slate-500 whitespace-nowrap">
+              <tr key={transaction.id} className="group hover:bg-muted/50 transition-colors duration-150">
+                <td className="px-4 py-4 text-xs font-semibold text-muted-foreground whitespace-nowrap align-middle">
                   {format(new Date(transaction.date), 'MMM dd, yyyy')}
                 </td>
-                <td className="px-4 py-5">
+                <td className="px-4 py-4 align-middle">
                   <div className="flex items-center gap-3">
                     <div className={cn(
-                      "w-9 h-9 rounded-xl flex items-center justify-center shrink-0",
+                      "w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm",
                       transaction.type === 'income' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20" : "bg-rose-50 text-rose-600 dark:bg-rose-900/20"
                     )}>
                       {transaction.type === 'income' ? <ArrowUpRight className="w-4.5 h-4.5" /> : <ArrowDownLeft className="w-4.5 h-4.5" />}
                     </div>
-                                        <span className="font-bold text-foreground truncate">{transaction.description}</span>
+                    <span className="font-bold text-foreground">{transaction.description}</span>
                   </div>
                 </td>
-                <td className="px-2 py-5 text-center">
-                  <span className="inline-block px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-wider">
+                <td className="px-4 py-4 text-center align-middle">
+                  <span className="inline-block px-2.5 py-1 rounded-lg text-[9px] font-black bg-muted/50 text-muted-foreground border border-border/50 uppercase tracking-wider whitespace-nowrap">
                     {transaction.category}
                   </span>
                 </td>
                 <td className={cn(
-                  "px-4 py-5 text-right font-black text-sm",
+                  "px-4 py-4 text-right font-black text-sm align-middle whitespace-nowrap",
                   transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
                 )}>
                   {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
                 </td>
                 {role === 'admin' && (
-                  <td className="px-4 py-5 text-center">
+                  <td className="px-4 py-4 text-center align-middle">
                     <div className="flex items-center justify-center gap-2">
                       <Button
                         variant="outline"
                         size="icon"
-                        className="w-8 h-8 rounded-lg border-slate-200 dark:border-slate-800 hover:bg-primary/10 hover:border-primary hover:text-primary transition-all"
+                        className="w-8 h-8 rounded-lg border-border hover:bg-primary/10 hover:border-primary hover:text-primary transition-all"
                         onClick={() => onEdit(transaction)}
                       >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -174,7 +174,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="w-8 h-8 rounded-lg border-slate-200 dark:border-slate-800 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-600 dark:hover:bg-rose-900/10 dark:hover:border-rose-900"
+                        className="w-8 h-8 rounded-lg border-border hover:bg-rose-500/10 hover:border-rose-500 hover:text-rose-600 transition-all"
                         onClick={() => deleteTransaction(transaction.id)}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -190,7 +190,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
 
       {/* Pagination Bar - only show on full list view (not Dashboard) */}
       {!itemsCount && totalPages > 1 && (
-                <div className="px-6 py-4 border-t border-border flex items-center justify-between bg-muted/10">
+        <div className="px-6 py-4 border-t border-border flex items-center justify-between bg-muted/10">
           <div className="text-[11px] font-bold text-slate-400 uppercase tracking-widest hidden sm:block">
             Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, sortedTransactions.length)} of {sortedTransactions.length}
           </div>
