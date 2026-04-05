@@ -60,7 +60,66 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full">
+      {/* Mobile Card View */}
+      <div className="lg:hidden space-y-4 p-4">
+        {displayedTransactions.map((transaction) => (
+          <div 
+            key={transaction.id} 
+            className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex items-center gap-3">
+                <div className={cn(
+                  "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
+                  transaction.type === 'income' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30" : "bg-rose-50 text-rose-600 dark:bg-rose-950/30"
+                )}>
+                  {transaction.type === 'income' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
+                </div>
+                <div>
+                  <p className="font-bold text-slate-800 dark:text-slate-100 leading-none mb-1">{transaction.description}</p>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{format(new Date(transaction.date), 'MMM dd, yyyy')}</p>
+                </div>
+              </div>
+              <span className="px-2 py-1 rounded-lg text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-widest">
+                {transaction.category}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className={cn(
+                "text-base font-black",
+                transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
+              )}>
+                {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
+              </div>
+              
+              {role === 'admin' && (
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="w-9 h-9 rounded-lg border-slate-200 dark:border-slate-800"
+                    onClick={() => onEdit(transaction)}
+                  >
+                    <Edit2 className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="w-9 h-9 rounded-lg border-slate-200 dark:border-slate-800 hover:bg-rose-50 hover:text-rose-600"
+                    onClick={() => deleteTransaction(transaction.id)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table View */}
+      <div className="hidden lg:block w-full">
         <table className="w-full text-left border-collapse table-fixed">
           <thead>
             <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/10">
