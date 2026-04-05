@@ -9,7 +9,7 @@ const useFinanceStore = create(
       transactions: mockTransactions,
       role: 'admin', // 'admin' or 'viewer'
       currency: CURRENCIES[0],
-      isDarkMode: false,
+      isDarkMode: localStorage.getItem('theme') === 'dark',
       isSidebarOpen: false,
       filters: {
         search: '',

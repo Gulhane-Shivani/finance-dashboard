@@ -34,7 +34,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
   return (
     <>
       {/* Mobile Overlay */}
-      <div 
+      <div
         className={cn(
           "fixed inset-0 bg-slate-950/40 backdrop-blur-md z-[45] lg:hidden transition-all duration-500",
           isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -43,7 +43,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
       />
 
       <aside className={cn(
-        "fixed left-0 top-0 h-full w-72 lg:w-64 bg-white dark:bg-[#0f172a] border-r border-slate-200 dark:border-slate-800 p-6 flex flex-col z-50 transition-transform duration-500 ease-in-out lg:translate-x-0",
+        "fixed left-0 top-0 h-full w-72 lg:w-64 bg-card text-card-foreground border-r border-border p-6 flex flex-col z-50 transition-transform duration-500 ease-in-out lg:translate-x-0",
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex items-center justify-between mb-10 px-2">

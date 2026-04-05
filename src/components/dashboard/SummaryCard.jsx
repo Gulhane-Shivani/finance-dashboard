@@ -50,16 +50,16 @@ const SummaryCard = ({ title, amount, trend, chartType, isRaw = false }) => {
   const isPositive = trend >= 0;
 
   return (
-    <Card className="border border-slate-200 dark:border-border shadow-sm bg-white dark:bg-card rounded-xl overflow-hidden hover:shadow-md transition-all duration-300">
+    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-all duration-300">
       <div className="p-4 pb-3">
         <div className="flex justify-between items-center mb-3">
-          <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+          <div className="flex items-center gap-1 text-muted-foreground">
             <span className="text-[12px] font-bold">{title}</span>
             <Info className="w-3.5 h-3.5 cursor-help" />
           </div>
           <div className={cn(
             "px-2 py-0.5 rounded-md text-[10px] font-bold",
-            isPositive ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400" : "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400"
+            isPositive ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-rose-500/10 text-rose-600 dark:text-rose-400"
           )}>
             {isPositive ? '+' : ''}{trend}%
           </div>
@@ -67,10 +67,10 @@ const SummaryCard = ({ title, amount, trend, chartType, isRaw = false }) => {
 
         <div className="flex justify-between items-end gap-2">
           <div>
-            <h3 className="text-[22px] font-black text-slate-800 dark:text-white tracking-tight leading-tight mb-0.5">
+            <h3 className="text-[22px] font-black text-foreground tracking-tight leading-tight mb-0.5">
               {isRaw ? amount : formatCurrency(amount, currency)}
             </h3>
-            <p className="text-[10px] font-semibold text-slate-400 dark:text-slate-500">
+            <p className="text-[10px] font-semibold text-muted-foreground">
               Relative to last month
             </p>
           </div>

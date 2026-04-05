@@ -17,7 +17,7 @@ import { formatCurrency } from '../../utils/currency';
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const OverviewChart = ({ type = 'area' }) => {
-  const { currency, transactions } = useFinanceStore();
+  const { currency, transactions, isDarkMode } = useFinanceStore();
 
   // Build monthly totals dynamically from real transactions
   const monthlyMap = {};
@@ -46,18 +46,19 @@ const OverviewChart = ({ type = 'area' }) => {
 
   const tooltipStyle = {
     borderRadius: '16px',
-    border: '1px solid rgba(255,255,255,0.1)',
+    border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.05)',
     boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)',
-    background: 'rgba(255,255,255,0.92)',
+    background: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255,255,255,0.92)',
+    color: isDarkMode ? '#f8fafc' : '#1e293b',
     backdropFilter: 'blur(8px)',
   };
 
   return (
-    <Card className="border border-slate-200 dark:border-border shadow-sm bg-white dark:bg-card rounded-xl overflow-hidden">
+    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>Cash Flow Overview</CardTitle>
-          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-secondary/50 p-1 rounded-lg">
+          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground bg-muted/50 p-1 rounded-lg">
             <span className="px-2 py-1 bg-card rounded shadow-sm text-foreground">Monthly</span>
             <span className="px-2 py-1">Quarterly</span>
             <span className="px-2 py-1">Yearly</span>
@@ -83,18 +84,18 @@ const OverviewChart = ({ type = 'area' }) => {
                     <stop offset="95%" stopColor="#f43f5e" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(226,232,240,0.4)" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }} dx={-10} tickFormatter={formatYAxis} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={isDarkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 12, fontWeight: 500 }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 12, fontWeight: 500 }} dx={-10} tickFormatter={formatYAxis} />
                 <Tooltip formatter={formatTooltip} contentStyle={tooltipStyle} cursor={{ stroke: '#558776', strokeWidth: 2, strokeDasharray: '5 5' }} />
                 <Area type="monotone" dataKey="income" stroke="#558776" fillOpacity={1} fill="url(#colorIncome)" strokeWidth={3} animationDuration={1500} />
                 <Area type="monotone" dataKey="expense" stroke="#f43f5e" fillOpacity={1} fill="url(#colorExpense)" strokeWidth={3} animationDuration={1500} />
               </AreaChart>
             ) : (
               <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(226,232,240,0.4)" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94A3B8', fontSize: 12, fontWeight: 500 }} dx={-10} tickFormatter={formatYAxis} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={isDarkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 12, fontWeight: 500 }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 12, fontWeight: 500 }} dx={-10} tickFormatter={formatYAxis} />
                 <Tooltip formatter={formatTooltip} contentStyle={tooltipStyle} />
                 <Bar dataKey="income" fill="#558776" radius={[6, 6, 0, 0]} barSize={32} />
                 <Bar dataKey="expense" fill="#f43f5e" radius={[6, 6, 0, 0]} barSize={32} />

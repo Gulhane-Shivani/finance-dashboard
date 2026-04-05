@@ -24,7 +24,7 @@ const Select = React.forwardRef(({ className, options, value, onChange, icon: Ic
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex w-full items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 focus:outline-none focus:border-primary cursor-pointer h-12 shadow-sm",
+          "flex w-full items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground transition-all hover:bg-muted/50 focus:outline-none focus:border-primary cursor-pointer h-12 shadow-sm",
           isOpen && "border-primary ring-2 ring-primary/10",
           className?.includes('border-none') && "border-none shadow-none"
         )}
@@ -32,21 +32,21 @@ const Select = React.forwardRef(({ className, options, value, onChange, icon: Ic
         {...props}
       >
         <div className="flex items-center gap-2 truncate">
-          {Icon && <Icon className="w-4 h-4 text-slate-400 shrink-0" />}
-          <span className="truncate">{selectedOption.label}</span>
+          {Icon && <Icon className="w-4 h-4 text-muted-foreground shrink-0" />}
+          <span className="truncate text-foreground/80 font-medium">{selectedOption.label}</span>
         </div>
-        <ChevronDown className={cn("h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 ml-auto", isOpen && "rotate-180")} />
+        <ChevronDown className={cn("h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 ml-auto", isOpen && "rotate-180")} />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 w-full mt-1.5 min-w-[8rem] overflow-hidden rounded-md border border-slate-200 bg-white p-1 text-slate-950 shadow-lg animate-in fade-in zoom-in-95 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50">
+        <div className="absolute top-full left-0 z-50 w-full mt-1.5 min-w-[8rem] overflow-hidden rounded-md border border-border bg-card p-1 text-foreground shadow-lg animate-in fade-in zoom-in-95">
           <div className="max-h-60 overflow-y-auto">
             {options.map((option) => (
               <div
                 key={option.value}
                 className={cn(
-                  "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-3 pr-8 text-sm outline-none hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50 transition-colors",
-                  value === option.value && "bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50"
+                  "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-3 pr-8 text-sm outline-none hover:bg-muted hover:text-foreground transition-all duration-200",
+                  value === option.value && "bg-muted text-foreground"
                 )}
                 onClick={() => {
                   onChange({ target: { value: option.value } });

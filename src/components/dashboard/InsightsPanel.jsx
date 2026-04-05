@@ -6,17 +6,17 @@ import { cn } from '../../utils/cn';
 import { formatCurrency } from '../../utils/currency';
 
 const InsightCard = ({ icon: Icon, title, value, type, description }) => (
-  <div className="flex gap-4 p-4 rounded-xl bg-slate-50/50 dark:bg-slate-950/30 border border-slate-100 dark:border-border/50 transition-all hover:bg-slate-100 dark:hover:bg-slate-900/50 shadow-sm">
+  <div className="flex gap-4 p-4 rounded-xl bg-muted/30 border border-border/50 transition-all hover:bg-muted/50 shadow-sm">
     <div className={cn(
       "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm",
-      type === 'success' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400" : "bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400"
+      type === 'success' ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-rose-500/10 text-rose-600 dark:text-rose-400"
     )}>
       <Icon className="w-6 h-6" />
     </div>
     <div className="min-w-0">
-      <h4 className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-none mb-1.5">{title}</h4>
-      <p className="text-xl font-black text-slate-800 dark:text-white leading-none mb-2 tracking-tight">{value}</p>
-      <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 leading-tight line-clamp-2">{description}</p>
+      <h4 className="text-[11px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1.5">{title}</h4>
+      <p className="text-xl font-black text-foreground leading-none mb-2 tracking-tight">{value}</p>
+      <p className="text-xs font-semibold text-muted-foreground leading-tight line-clamp-2">{description}</p>
     </div>
   </div>
 );
@@ -41,7 +41,7 @@ const InsightsPanel = () => {
   const highestCategory = Object.entries(categoryExpenses).sort((a, b) => b[1] - a[1])[0] || ['None', 0];
 
   return (
-    <Card className="border border-slate-200 dark:border-border shadow-sm bg-white dark:bg-card rounded-lg overflow-hidden">
+        <Card className="border border-border shadow-sm bg-card rounded-lg overflow-hidden">
       <CardHeader>
         <div className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-warning" />

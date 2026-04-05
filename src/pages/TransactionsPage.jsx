@@ -55,8 +55,8 @@ const TransactionsPage = () => {
           <p className="text-muted-foreground">Manage and track your flow of funds.</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button
-            className="h-10 gap-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md hover:bg-slate-800 dark:hover:bg-slate-200 transition-all font-bold px-5"
+                    <Button
+            className="h-10 gap-2 rounded-lg bg-foreground text-background shadow-md hover:opacity-90 transition-all font-bold px-5"
             onClick={handleExportCSV}
           >
             <Download className="w-4 h-4" /> Export
@@ -69,11 +69,11 @@ const TransactionsPage = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-800 p-3 rounded-lg shadow-sm">
+            <div className="bg-card border border-border p-3 rounded-lg shadow-sm">
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
 
           {/* Search Field */}
-          <div className="relative flex items-center w-full lg:max-w-md h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80">
+                    <div className="relative flex items-center w-full lg:max-w-md h-12 bg-background rounded-lg border border-border transition-all focus-within:border-primary/80">
             <div className="pl-4 pointer-events-none">
               <Search className="w-4 h-4 text-slate-400 font-bold" />
             </div>
@@ -108,7 +108,7 @@ const TransactionsPage = () => {
               onChange={(e) => setFilters({ type: e.target.value })}
             />
 
-            <div className="hidden sm:block w-[1px] h-8 bg-slate-200 dark:bg-slate-800 mx-1"></div>
+                        <div className="hidden sm:block w-[1px] h-8 bg-border mx-1"></div>
 
             {/* Sort Select */}
             <Select
@@ -125,14 +125,14 @@ const TransactionsPage = () => {
         </div>
       </div>
 
-      <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#0f172a] rounded-lg overflow-hidden">
-        <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-[#1e293b] px-6 py-4">
-          <CardTitle className="text-lg font-bold text-slate-800 dark:text-slate-100">Transaction History</CardTitle>
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <Card className="border border-border shadow-sm bg-card rounded-lg overflow-hidden">
+        <CardHeader className="flex flex-row items-center justify-between border-b border-border bg-muted/50 px-6 py-4">
+          <CardTitle className="text-lg font-bold text-foreground">Transaction History</CardTitle>
+          <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             Displaying All
           </div>
         </CardHeader>
-        <CardContent className="p-0 bg-white dark:bg-[#0f172a]">
+        <CardContent className="p-0 bg-transparent">
           <TransactionTable onEdit={handleEdit} />
         </CardContent>
       </Card>

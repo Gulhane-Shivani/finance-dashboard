@@ -63,9 +63,9 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
       {/* Mobile Card View */}
       <div className="lg:hidden space-y-4 p-4">
         {displayedTransactions.map((transaction) => (
-          <div 
-            key={transaction.id} 
-            className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm"
+                    <div
+            key={transaction.id}
+            className="bg-card rounded-xl border border-border p-4 shadow-sm"
           >
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-3">
@@ -75,9 +75,9 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                 )}>
                   {transaction.type === 'income' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
                 </div>
-                <div>
-                  <p className="font-bold text-slate-800 dark:text-slate-100 leading-none mb-1">{transaction.description}</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{format(new Date(transaction.date), 'MMM dd, yyyy')}</p>
+                                <div>
+                  <p className="font-bold text-foreground leading-none mb-1">{transaction.description}</p>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{format(new Date(transaction.date), 'MMM dd, yyyy')}</p>
                 </div>
               </div>
               <span className="px-2 py-1 rounded-lg text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-widest">
@@ -85,14 +85,14 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
               </span>
             </div>
 
-            <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center justify-between pt-3 border-t border-border">
               <div className={cn(
                 "text-base font-black",
                 transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
               )}>
                 {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
               </div>
-              
+
               {role === 'admin' && (
                 <div className="flex gap-2">
                   <Button
@@ -122,7 +122,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
       <div className="hidden lg:block w-full">
         <table className="w-full text-left border-collapse table-fixed">
           <thead>
-            <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/10">
+                        <tr className="border-b border-border bg-muted/30">
               <th className="w-[110px] px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Date</th>
               <th className="px-4 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left">Description</th>
               <th className="w-[120px] px-2 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">Category</th>
@@ -132,9 +132,9 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
               )}
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                    <tbody className="divide-y divide-border">
             {displayedTransactions.map((transaction) => (
-              <tr key={transaction.id} className="group hover:bg-slate-50/80 dark:hover:bg-slate-900 transition-colors duration-150">
+                            <tr key={transaction.id} className="group hover:bg-muted/50 transition-colors duration-150">
                 <td className="px-4 py-5 text-sm text-slate-500 whitespace-nowrap">
                   {format(new Date(transaction.date), 'MMM dd, yyyy')}
                 </td>
@@ -146,7 +146,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                     )}>
                       {transaction.type === 'income' ? <ArrowUpRight className="w-4.5 h-4.5" /> : <ArrowDownLeft className="w-4.5 h-4.5" />}
                     </div>
-                    <span className="font-bold text-slate-700 dark:text-slate-200 truncate">{transaction.description}</span>
+                                        <span className="font-bold text-foreground truncate">{transaction.description}</span>
                   </div>
                 </td>
                 <td className="px-2 py-5 text-center">
@@ -190,7 +190,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
 
       {/* Pagination Bar - only show on full list view (not Dashboard) */}
       {!itemsCount && totalPages > 1 && (
-        <div className="px-6 py-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/30">
+                <div className="px-6 py-4 border-t border-border flex items-center justify-between bg-muted/10">
           <div className="text-[11px] font-bold text-slate-400 uppercase tracking-widest hidden sm:block">
             Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, sortedTransactions.length)} of {sortedTransactions.length}
           </div>

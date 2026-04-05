@@ -11,10 +11,20 @@ const NOTIFICATIONS = [
 ];
 
 const Header = ({ title }) => {
-  const { isDarkMode, toggleDarkMode, filters, setFilters, isSidebarOpen, setSidebarOpen, currency, setCurrency } = useFinanceStore();
+  const { filters, setFilters, setSidebarOpen, currency, setCurrency, isDarkMode, toggleDarkMode } = useFinanceStore();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +111,7 @@ const Header = ({ title }) => {
               onClick={(e) => { e.stopPropagation(); setShowNotifications(!showNotifications); }}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center transition-all relative",
-                showNotifications ? "bg-white text-[#558776]" : "bg-white/10 text-white hover:bg-white/20"
+                                showNotifications ? "bg-background text-primary" : "bg-white/10 text-white hover:bg-white/20"
               )}
             >
               <Bell className="w-4.5 h-4.5" />
@@ -109,11 +119,11 @@ const Header = ({ title }) => {
             </button>
 
             {showNotifications && (
-              <div 
-                className="absolute top-14 right-[-50px] sm:right-0 w-[360px] bg-white dark:bg-slate-950 rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-slate-100 dark:border-slate-800 animate-in fade-in zoom-in duration-200 overflow-hidden"
+                            <div 
+                className="absolute top-14 right-[-50px] sm:right-0 w-[360px] bg-card rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-border animate-in fade-in zoom-in duration-200 overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="p-4 border-b border-slate-50 dark:border-slate-800/50 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/10">
+                                <div className="p-4 border-b border-border flex justify-between items-center bg-muted/50">
                   <h3 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-widest leading-none">Notifications</h3>
                   <button className="text-[9px] font-bold text-slate-400 hover:text-primary dark:hover:text-white uppercase tracking-wider flex items-center gap-1 transition-colors">
                     <CheckCheck className="w-3 h-3" /> Mark read
@@ -122,7 +132,7 @@ const Header = ({ title }) => {
                 
                 <div className="max-h-[350px] overflow-y-auto">
                   {NOTIFICATIONS.map((notif) => (
-                    <div key={notif.id} className="p-4 border-b border-slate-50 dark:border-slate-800/30 last:border-none hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer relative">
+                                        <div key={notif.id} className="p-4 border-b border-border/30 last:border-none hover:bg-muted/50 transition-colors cursor-pointer relative">
                       <div className="flex gap-3">
                         <div className={cn(
                           "w-9 h-9 rounded-xl flex items-center justify-center shrink-0",
@@ -141,7 +151,7 @@ const Header = ({ title }) => {
                   ))}
                 </div>
                 
-                <button className="w-full py-3 bg-slate-50 dark:bg-slate-900/50 text-[9px] font-black text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 uppercase tracking-widest border-t border-slate-50 dark:border-slate-800 transition-colors">
+                                <button className="w-full py-3 bg-muted/50 text-[9px] font-black text-muted-foreground hover:text-foreground uppercase tracking-widest border-t border-border transition-colors">
                   View full activity
                 </button>
               </div>
