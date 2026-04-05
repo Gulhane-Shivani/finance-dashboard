@@ -55,8 +55,8 @@ const TransactionsPage = () => {
           <p className="text-muted-foreground">Manage and track your flow of funds.</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button 
-            className="h-10 gap-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md hover:bg-slate-800 dark:hover:bg-slate-200 transition-all font-bold px-5" 
+          <Button
+            className="h-10 gap-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md hover:bg-slate-800 dark:hover:bg-slate-200 transition-all font-bold px-5"
             onClick={handleExportCSV}
           >
             <Download className="w-4 h-4" /> Export
@@ -71,7 +71,7 @@ const TransactionsPage = () => {
 
       <div className="bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-800 p-3 rounded-lg shadow-sm">
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          
+
           {/* Search Field */}
           <div className="relative flex items-center w-full lg:max-w-md h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80">
             <div className="pl-4 pointer-events-none">
@@ -94,7 +94,7 @@ const TransactionsPage = () => {
               value={filters.category}
               onChange={(e) => setFilters({ category: e.target.value })}
             />
-            
+
             {/* Type Select */}
             <Select
               className="w-[130px]"
@@ -115,8 +115,8 @@ const TransactionsPage = () => {
               className="w-[130px]"
               icon={SortAsc}
               options={[
-                { label: 'Sort: Date', value: 'date' },
-                { label: 'Sort: Amount', value: 'amount' }
+                { label: 'Date', value: 'date' },
+                { label: 'Amount', value: 'amount' }
               ]}
               value={filters.sortBy}
               onChange={(e) => setFilters({ sortBy: e.target.value })}
