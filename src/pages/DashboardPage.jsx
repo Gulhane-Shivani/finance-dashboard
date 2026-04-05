@@ -7,11 +7,19 @@ import InsightsPanel from '../components/dashboard/InsightsPanel';
 import SpendingBreakdownChart from '../components/dashboard/SpendingBreakdownChart';
 import { Button } from '../components/ui/Button';
 import TransactionTable from '../components/transactions/TransactionTable';
+import TransactionModal from '../components/transactions/TransactionModal';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 
 const DashboardPage = () => {
   const { transactions, filters, setFilters } = useFinanceStore();
   const [showFilter, setShowFilter] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [editingTransaction, setEditingTransaction] = React.useState(null);
+
+  const handleEdit = (transaction) => {
+    setEditingTransaction(transaction);
+    setIsModalOpen(true);
+  };
 
   const filtered = transactions.filter(t => {
     if (filters.type && filters.type !== 'All') {
@@ -130,7 +138,7 @@ const DashboardPage = () => {
               <button className="text-sm font-medium text-primary hover:underline">View All</button>
             </CardHeader>
             <CardContent className="p-0 bg-transparent">
-              <TransactionTable itemsCount={7} />
+              <TransactionTable itemsCount={7} onEdit={handleEdit} />
             </CardContent>
           </Card>
         </div>
@@ -140,6 +148,12 @@ const DashboardPage = () => {
           <SpendingBreakdownChart />
         </div>
       </div>
+
+      <TransactionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        transaction={editingTransaction}
+      />
     </div>
   );
 };
