@@ -39,25 +39,25 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 4%; /* Midnight Navy Base */
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 6%;
+    --card: 222 47% 7%; /* Indigo Slate Surface */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 4%;
     --popover-foreground: 210 40% 98%;
-    --primary: 238.7 83.5% 66.7%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 12%;
+    --primary: 161 28% 50%; /* Calibrated Vibrant Sage */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 222 47% 10%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 262.1 83.3% 57.8%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 343.4 89.7% 59.8%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20.2% 70.1%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222 47% 4%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 238.7 83.5% 66.7%;
+    --border: 217.2 32.6% 20%; /* Steel Blue Borders */
+    --input: 217.2 32.6% 20%;
+    --ring: 161 28% 50%;
   }
 }
 

@@ -42,7 +42,7 @@ const Header = ({ title }) => {
       "sticky top-6 z-40 px-6 transition-all duration-500 ease-in-out flex justify-end",
       isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0 pointer-events-none"
     )}>
-      <div className="bg-[#558776] text-white h-16 rounded-[50px] flex items-center justify-between px-4 lg:px-6 shadow-[0_20px_50px_-20px_rgba(85,135,118,0.6)] w-full lg:w-[60%] lg:min-w-[700px]">
+      <div className="bg-[#558776] dark:bg-card text-white h-16 rounded-[50px] flex items-center justify-between px-4 lg:px-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] border border-transparent dark:border-border w-full lg:w-[60%] lg:min-w-[700px]">
         
         <div className="flex items-center gap-3 flex-1">
           <button 

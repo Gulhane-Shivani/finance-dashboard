@@ -53,7 +53,7 @@ const OverviewChart = ({ type = 'area' }) => {
   };
 
   return (
-    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-xl overflow-hidden">
+    <Card className="border border-slate-200 dark:border-border shadow-sm bg-white dark:bg-card rounded-xl overflow-hidden">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>Cash Flow Overview</CardTitle>
