@@ -1,51 +1,90 @@
 import React from 'react';
-import { TrendingUp, TrendingDown, Wallet, DollarSign, HandCoins } from 'lucide-react';
-import { Card, CardContent } from '../ui/Card';
+import { Info, ArrowRight } from 'lucide-react';
+import { Card } from '../ui/Card';
 import { cn } from '../../utils/cn';
 import useFinanceStore from '../../store/useFinanceStore';
 import { formatCurrency } from '../../utils/currency';
 
-const SummaryCard = ({ title, amount, trend, icon: Icon, color }) => {
-  const { currency } = useFinanceStore();
-  const isPositive = trend > 0;
+const MiniChart = ({ type, isPositive }) => {
+  const color = isPositive ? "#558776" : "#f43f5e"; // Sage green or Rose red
   
-  return (
-    <Card className="hover:border-primary/40 transition-all duration-500 hover:-translate-y-1 group border-border/40 relative overflow-hidden gradient-card">
-      <div className={cn(
-        "absolute -right-4 -top-4 w-24 h-24 blur-3xl opacity-10 rounded-full transition-all duration-500 group-hover:opacity-20",
-        color === 'blue' && "bg-blue-500",
-        color === 'green' && "bg-emerald-500",
-        color === 'red' && "bg-rose-500",
-        color === 'purple' && "bg-purple-500"
-      )}></div>
+  if (type === 'bar') {
+    return (
+      <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="20" width="12" height="20" rx="2" fill={color} fillOpacity="0.4" />
+        <rect x="16" y="28" width="12" height="12" rx="2" fill={color} />
+        <rect x="32" y="10" width="12" height="30" rx="2" fill={color} fillOpacity="0.7" />
+        <rect x="48" y="15" width="12" height="25" rx="2" fill={color} />
+      </svg>
+    );
+  }
+  if (type === 'line') {
+    return (
+      <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 35 L15 25 L30 30 L45 15 L60 5" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M0 40 L15 30 L30 35 L45 20 L60 10" stroke={color} strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
+  if (type === 'pie') {
+    return (
+      <svg width="100%" height="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="16" stroke={color} strokeWidth="6" strokeDasharray="75 100" strokeLinecap="round"/>
+        <circle cx="20" cy="20" r="16" stroke={color} strokeOpacity="0.2" strokeWidth="6" strokeDasharray="15 100" strokeLinecap="round" transform="rotate(-90 20 20)"/>
+      </svg>
+    );
+  }
+  if (type === 'area') {
+    return (
+      <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 25 L15 15 L30 25 L45 10 L60 20 V40 H0 Z" fill={color} fillOpacity="0.2"/>
+        <path d="M0 25 L15 15 L30 25 L45 10 L60 20" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
+  return null;
+};
 
-      <CardContent className="p-6 relative z-10">
-        <div className="flex items-center justify-between mb-5">
-          <div className={cn(
-            "p-3.5 rounded-2xl shadow-sm transition-all duration-500 group-hover:scale-110",
-            color === 'blue' && "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20",
-            color === 'green' && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20",
-            color === 'red' && "bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20",
-            color === 'purple' && "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20"
-          )}>
-            <Icon className="w-6 h-6" />
+const SummaryCard = ({ title, amount, trend, chartType, isRaw = false }) => {
+  const { currency } = useFinanceStore();
+  const isPositive = trend >= 0;
+
+  return (
+    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300">
+      <div className="p-4 pb-3">
+        <div className="flex justify-between items-center mb-3">
+          <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+            <span className="text-[12px] font-bold">{title}</span>
+            <Info className="w-3.5 h-3.5 cursor-help" />
           </div>
           <div className={cn(
-             "px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 border animate-in slide-in-from-right-2 duration-700",
-             isPositive 
-              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" 
-              : "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20"
+            "px-2 py-0.5 rounded-md text-[10px] font-bold",
+            isPositive ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400" : "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400"
           )}>
-            {isPositive ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
-            {Math.abs(trend)}%
+            {isPositive ? '+' : ''}{trend}%
           </div>
         </div>
-        
-        <p className="text-xs font-bold text-muted-foreground mb-1 uppercase tracking-widest">{title}</p>
-        <h3 className="text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
-          {formatCurrency(amount, currency)}
-        </h3>
-      </CardContent>
+
+        <div className="flex justify-between items-end gap-2">
+          <div>
+            <h3 className="text-[22px] font-black text-slate-800 dark:text-white tracking-tight leading-tight mb-0.5">
+              {isRaw ? amount : formatCurrency(amount, currency)}
+            </h3>
+            <p className="text-[10px] font-semibold text-slate-400 dark:text-slate-500">
+              Relative to last month
+            </p>
+          </div>
+          <div className="w-[50px] h-[34px] flex-shrink-0">
+            <MiniChart type={chartType} isPositive={isPositive} />
+          </div>
+        </div>
+      </div>
+
+      <div className="px-4 pb-4 pt-0">
+        <button className="w-full bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs h-8 rounded-lg flex items-center justify-center gap-1.5 transition-colors border border-slate-100 dark:border-slate-700/50 group">
+          Inspect <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+        </button>
+      </div>
     </Card>
   );
 };
