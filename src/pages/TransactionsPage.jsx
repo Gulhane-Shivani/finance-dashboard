@@ -55,51 +55,50 @@ const TransactionsPage = () => {
           <p className="text-muted-foreground">Manage and track your flow of funds.</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="gap-2 rounded-xl" onClick={handleExportCSV}>
+          <Button variant="outline" className="gap-2 rounded-lg" onClick={handleExportCSV}>
             <Download className="w-4 h-4" /> Export CSV
           </Button>
           {role === 'admin' && (
-            <Button className="gap-2 rounded-xl" onClick={handleAdd}>
+            <Button className="gap-2 rounded-lg" onClick={handleAdd}>
               <Plus className="w-4 h-4" /> Add Transaction
             </Button>
           )}
         </div>
       </div>
 
-      <div className="pb-2">
-        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between px-1">
+      <div className="bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-800 p-3 rounded-lg shadow-sm">
+        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
           
-          <div className="relative flex items-center w-full lg:max-w-md h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
-            <div className="pl-5 pointer-events-none">
-              <Search className="w-5 h-5 text-slate-400 stroke-[2.5]" />
+          {/* Search Field */}
+          <div className="relative flex items-center w-full lg:max-w-md h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80">
+            <div className="pl-4 pointer-events-none">
+              <Search className="w-4 h-4 text-slate-400 font-bold" />
             </div>
             <Input
-              placeholder="Explore transactions..."
-              className="w-full h-full bg-transparent !border-none !shadow-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 font-bold text-slate-600 dark:text-slate-300 placeholder:text-slate-400 placeholder:font-semibold px-3 rounded-full"
+              placeholder="Search transactions..."
+              className="w-full h-full bg-transparent !border-none !shadow-none focus:outline-none focus:ring-0 font-medium text-slate-600 dark:text-slate-300 placeholder:text-slate-400 px-3"
               value={filters.search}
               onChange={(e) => setFilters({ search: e.target.value })}
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-5 w-full lg:w-auto">
-            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
-              <div className="pl-5 pointer-events-none">
-                <Filter className="w-5 h-5 text-slate-400 stroke-[2.5]" />
-              </div>
+          <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+            {/* Category Select */}
+            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
+              <Filter className="w-4 h-4 text-slate-400 ml-2" />
               <Select
-                className="w-[160px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                className="w-[140px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
                 options={['All Categories', ...categories].map(c => ({ label: c, value: c === 'All Categories' ? 'All' : c }))}
                 value={filters.category}
                 onChange={(e) => setFilters({ category: e.target.value })}
               />
             </div>
             
-            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
-              <div className="pl-5 pointer-events-none">
-                <Filter className="w-5 h-5 text-slate-400 stroke-[2.5]" />
-              </div>
+            {/* Type Select */}
+            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
+              <Filter className="w-4 h-4 text-slate-400 ml-2" />
               <Select
-                className="w-[140px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                className="w-[130px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
                 options={[
                   { label: 'All Types', value: 'All' },
                   { label: 'Income', value: 'income' },
@@ -110,14 +109,13 @@ const TransactionsPage = () => {
               />
             </div>
 
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 hidden sm:block mx-1"></div>
+            <div className="hidden sm:block w-[1px] h-8 bg-slate-200 dark:bg-slate-800 mx-1"></div>
 
-            <div className="relative flex items-center h-14 rounded-full bg-[#f3f6fa] dark:bg-[#1e293b] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0f172a,-6px_-6px_12px_#334155] focus-within:ring-2 focus-within:ring-[#558776]/50 transition-all">
-              <div className="pl-5 pointer-events-none">
-                <SortAsc className="w-5 h-5 text-slate-400 stroke-[2.5]" />
-              </div>
+            {/* Sort Select */}
+            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
+              <SortAsc className="w-4 h-4 text-slate-400 ml-2" />
               <Select
-                className="w-[140px] h-full bg-transparent !border-none text-slate-600 dark:text-slate-300 font-bold focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 !shadow-none px-3 cursor-pointer"
+                className="w-[130px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
                 options={[
                   { label: 'Sort: Date', value: 'date' },
                   { label: 'Sort: Amount', value: 'amount' }
@@ -127,12 +125,17 @@ const TransactionsPage = () => {
               />
             </div>
           </div>
-
         </div>
       </div>
 
-      <Card className="border-none shadow-sm overflow-hidden bg-card">
-        <CardContent className="p-0">
+      <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#0f172a] rounded-lg overflow-hidden">
+        <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-[#1e293b] px-6 py-4">
+          <CardTitle className="text-lg font-bold text-slate-800 dark:text-slate-100">Transaction History</CardTitle>
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Displaying All
+          </div>
+        </CardHeader>
+        <CardContent className="p-0 bg-white dark:bg-[#0f172a]">
           <TransactionTable onEdit={handleEdit} />
         </CardContent>
       </Card>

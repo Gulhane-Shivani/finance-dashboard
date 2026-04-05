@@ -69,7 +69,7 @@ const DashboardPage = () => {
 
       {/* Collapsible Filter Panel */}
       {showFilter && (
-        <div className="flex flex-wrap items-center gap-4 p-4 rounded-2xl bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-slate-800 shadow-sm animate-in slide-in-from-top-2 duration-300">
+        <div className="flex flex-wrap items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-slate-800 shadow-sm animate-in slide-in-from-top-2 duration-300">
           <div className="flex flex-col gap-1">
             <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Type</label>
             <select
@@ -123,7 +123,7 @@ const DashboardPage = () => {
         <div className="xl:col-span-2 space-y-8">
           <OverviewChart />
 
-          <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden">
+          <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-xl overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Recent Transactions</CardTitle>
               <button className="text-sm font-medium text-primary hover:underline">View All</button>

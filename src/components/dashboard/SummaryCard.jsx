@@ -50,7 +50,7 @@ const SummaryCard = ({ title, amount, trend, chartType, isRaw = false }) => {
   const isPositive = trend >= 0;
 
   return (
-    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300">
+    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-xl overflow-hidden hover:shadow-md transition-all duration-300">
       <div className="p-4 pb-3">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">

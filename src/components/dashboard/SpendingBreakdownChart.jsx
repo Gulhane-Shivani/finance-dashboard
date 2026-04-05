@@ -26,7 +26,7 @@ const SpendingBreakdownChart = () => {
   const total = expenseData.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden">
+    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-xl overflow-hidden">
       <CardHeader className="pb-2">
         <CardTitle>Spending Breakdown</CardTitle>
       </CardHeader>

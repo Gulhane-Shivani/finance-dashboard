@@ -21,8 +21,8 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
   // Apply sorting
   const sortedTransactions = [...filteredTransactions].sort((a, b) => {
     if (filters.sortBy === 'date') {
-      return filters.sortOrder === 'desc' 
-        ? new Date(b.date) - new Date(a.date) 
+      return filters.sortOrder === 'desc'
+        ? new Date(b.date) - new Date(a.date)
         : new Date(a.date) - new Date(b.date);
     } else {
       return filters.sortOrder === 'desc' ? b.amount - a.amount : a.amount - b.amount;
@@ -49,23 +49,23 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
     <div className="overflow-x-auto">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="border-b border-border">
-            <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Date</th>
-            <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Description</th>
-            <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Category</th>
-            <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-right">Amount</th>
+          <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/10">
+            <th className="px-5 py-3 text-sm font-bold text-slate-500">Date</th>
+            <th className="px-5 py-3 text-sm font-bold text-slate-500">Description</th>
+            <th className="px-5 py-3 text-sm font-bold text-slate-500 text-center">Category</th>
+            <th className="px-5 py-3 text-sm font-bold text-slate-500 text-right">Amount</th>
             {role === 'admin' && (
-              <th className="px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">Actions</th>
+              <th className="px-5 py-3 text-sm font-bold text-slate-500 text-center">Actions</th>
             )}
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
           {displayedTransactions.map((transaction) => (
-            <tr key={transaction.id} className="group hover:bg-secondary/50 transition-colors duration-150">
-              <td className="px-6 py-4 text-sm text-muted-foreground whitespace-nowrap">
+            <tr key={transaction.id} className="group hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-150">
+              <td className="px-5 py-3 text-sm text-slate-500 whitespace-nowrap">
                 {format(new Date(transaction.date), 'MMM dd, yyyy')}
               </td>
-              <td className="px-6 py-4">
+              <td className="px-5 py-3">
                 <div className="flex items-center gap-3">
                   <div className={cn(
                     "w-10 h-10 rounded-xl flex items-center justify-center",
@@ -76,37 +76,37 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                   <span className="font-medium text-foreground">{transaction.description}</span>
                 </div>
               </td>
-              <td className="px-6 py-4 text-center">
+              <td className="px-5 py-3 text-center">
                 <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-secondary text-secondary-foreground border border-border">
                   {transaction.category}
                 </span>
               </td>
               <td className={cn(
-                "px-6 py-4 text-right font-bold text-sm",
+                "px-5 py-3 text-right font-bold text-sm",
                 transaction.type === 'income' ? "text-emerald-600" : "text-rose-600"
               )}>
                 {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount, currency)}
               </td>
               {role === 'admin' && (
-                <td className="px-6 py-4 text-center">
-                   <div className="flex items-center justify-center gap-2">
-                     <Button 
-                       variant="ghost" 
-                       size="icon" 
-                       className="w-8 h-8 rounded-lg hover:bg-primary/10 hover:text-primary"
-                       onClick={() => onEdit(transaction)}
-                     >
-                       <Edit2 className="w-4 h-4" />
-                     </Button>
-                     <Button 
-                       variant="ghost" 
-                       size="icon" 
-                       className="w-8 h-8 rounded-lg hover:bg-destructive/10 hover:text-destructive"
-                       onClick={() => deleteTransaction(transaction.id)}
-                     >
-                       <Trash2 className="w-4 h-4" />
-                     </Button>
-                   </div>
+                <td className="px-5 py-3 text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 rounded-lg hover:bg-primary/10 hover:text-primary"
+                      onClick={() => onEdit(transaction)}
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 rounded-lg hover:bg-destructive/10 hover:text-destructive"
+                      onClick={() => deleteTransaction(transaction.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </td>
               )}
             </tr>

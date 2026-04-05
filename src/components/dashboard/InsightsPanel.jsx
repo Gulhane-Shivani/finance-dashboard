@@ -6,9 +6,9 @@ import { cn } from '../../utils/cn';
 import { formatCurrency } from '../../utils/currency';
 
 const InsightCard = ({ icon: Icon, title, value, type, description }) => (
-  <div className="flex gap-4 p-4 rounded-2xl bg-secondary/30 border border-border border-dashed transition-all hover:border-primary/20 hover:bg-secondary/50">
+  <div className="flex gap-4 p-4 rounded-lg bg-secondary/30 border border-border border-dashed transition-all hover:border-primary/20 hover:bg-secondary/50">
     <div className={cn(
-      "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm",
+      "w-12 h-12 rounded-lg flex items-center justify-center shrink-0 shadow-sm",
       type === 'success' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20" : "bg-rose-50 text-rose-600 dark:bg-rose-900/20"
     )}>
       <Icon className="w-6 h-6" />
@@ -41,7 +41,7 @@ const InsightsPanel = () => {
   const highestCategory = Object.entries(categoryExpenses).sort((a, b) => b[1] - a[1])[0] || ['None', 0];
 
   return (
-    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-2xl overflow-hidden">
+    <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#1e293b] rounded-lg overflow-hidden">
       <CardHeader>
         <div className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-warning" />
