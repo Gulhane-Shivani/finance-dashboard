@@ -41,7 +41,7 @@ const InsightsPanel = () => {
   const highestCategory = Object.entries(categoryExpenses).sort((a, b) => b[1] - a[1])[0] || ['None', 0];
 
   return (
-    <Card className="h-full">
+    <Card>
       <CardHeader>
         <div className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-warning" />

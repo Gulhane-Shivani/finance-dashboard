@@ -51,22 +51,9 @@ function App() {
       <div className="flex flex-col lg:pl-64 min-h-screen">
         <Header title={getPageTitle()} />
         
-        <main className="flex-1 p-6 lg:p-10 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-6 lg:p-10 max-w-7xl mx-auto w-full pb-12">
           {renderContent()}
         </main>
-
-        <footer className="py-6 px-10 border-t border-border mt-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2026 Zorvyn Finance. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Support</a>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );
