@@ -56,7 +56,7 @@ const TransactionsPage = () => {
         </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" className="gap-2 rounded-lg" onClick={handleExportCSV}>
-            <Download className="w-4 h-4" /> Export CSV
+            <Download className="w-4 h-4 " /> Export
           </Button>
           {role === 'admin' && (
             <Button className="gap-2 rounded-lg" onClick={handleAdd}>
@@ -84,46 +84,40 @@ const TransactionsPage = () => {
 
           <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
             {/* Category Select */}
-            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
-              <Filter className="w-4 h-4 text-slate-400 ml-2" />
-              <Select
-                className="w-[140px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
-                options={['All Categories', ...categories].map(c => ({ label: c, value: c === 'All Categories' ? 'All' : c }))}
-                value={filters.category}
-                onChange={(e) => setFilters({ category: e.target.value })}
-              />
-            </div>
+            <Select
+              className="w-[140px]"
+              icon={Filter}
+              options={['All Categories', ...categories].map(c => ({ label: c, value: c === 'All Categories' ? 'All' : c }))}
+              value={filters.category}
+              onChange={(e) => setFilters({ category: e.target.value })}
+            />
             
             {/* Type Select */}
-            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
-              <Filter className="w-4 h-4 text-slate-400 ml-2" />
-              <Select
-                className="w-[130px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
-                options={[
-                  { label: 'All Types', value: 'All' },
-                  { label: 'Income', value: 'income' },
-                  { label: 'Expense', value: 'expense' }
-                ]}
-                value={filters.type}
-                onChange={(e) => setFilters({ type: e.target.value })}
-              />
-            </div>
+            <Select
+              className="w-[130px]"
+              icon={Filter}
+              options={[
+                { label: 'All Types', value: 'All' },
+                { label: 'Income', value: 'income' },
+                { label: 'Expense', value: 'expense' }
+              ]}
+              value={filters.type}
+              onChange={(e) => setFilters({ type: e.target.value })}
+            />
 
             <div className="hidden sm:block w-[1px] h-8 bg-slate-200 dark:bg-slate-800 mx-1"></div>
 
             {/* Sort Select */}
-            <div className="flex items-center h-12 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 transition-all focus-within:border-primary/80 px-2">
-              <SortAsc className="w-4 h-4 text-slate-400 ml-2" />
-              <Select
-                className="w-[130px] h-full bg-transparent !border-none !shadow-none text-sm font-semibold text-slate-600 dark:text-slate-300 focus:ring-0 cursor-pointer"
-                options={[
-                  { label: 'Sort: Date', value: 'date' },
-                  { label: 'Sort: Amount', value: 'amount' }
-                ]}
-                value={filters.sortBy}
-                onChange={(e) => setFilters({ sortBy: e.target.value })}
-              />
-            </div>
+            <Select
+              className="w-[130px]"
+              icon={SortAsc}
+              options={[
+                { label: 'Sort: Date', value: 'date' },
+                { label: 'Sort: Amount', value: 'amount' }
+              ]}
+              value={filters.sortBy}
+              onChange={(e) => setFilters({ sortBy: e.target.value })}
+            />
           </div>
         </div>
       </div>

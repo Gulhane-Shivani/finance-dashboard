@@ -85,7 +85,7 @@ const Sidebar = ({ activeTab, onTabChange }) => {
                 <User className="w-7 h-7 text-[#558776]" />
               </div>
               <div>
-                <p className="text-sm font-bold truncate leading-tight">Alex Rivera</p>
+                <p className="text-sm font-bold truncate leading-tight">Shivani Gulhane</p>
                 <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{role}</p>
               </div>
             </div>

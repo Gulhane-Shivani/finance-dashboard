@@ -65,7 +65,7 @@ const TransactionModal = ({ isOpen, onClose, transaction }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
-           <div className="flex bg-secondary/50 p-1 rounded-xl border border-border">
+          <div className="flex bg-secondary/50 p-1 rounded-xl border border-border">
             <button
               type="button"
               onClick={() => setFormData({ ...formData, type: 'expense' })}
@@ -95,7 +95,7 @@ const TransactionModal = ({ isOpen, onClose, transaction }) => {
               </label>
               <div className="relative">
                 <Info className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input 
+                <Input
                   className="pl-10 h-11"
                   placeholder="e.g. Monthly Salary or Netflix"
                   value={formData.description}
@@ -106,11 +106,11 @@ const TransactionModal = ({ isOpen, onClose, transaction }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-               <div className="space-y-2">
+              <div className="space-y-2">
                 <label className="text-sm font-medium leading-none">Amount</label>
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input 
+                  <Input
                     type="number"
                     step="0.01"
                     className="pl-10 h-11"
@@ -122,11 +122,11 @@ const TransactionModal = ({ isOpen, onClose, transaction }) => {
                 </div>
               </div>
 
-               <div className="space-y-2">
+              <div className="space-y-2">
                 <label className="text-sm font-medium leading-none">Date</label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input 
+                  <Input
                     type="date"
                     className="pl-10 h-11"
                     value={formData.date}
@@ -141,7 +141,7 @@ const TransactionModal = ({ isOpen, onClose, transaction }) => {
               <label className="text-sm font-medium leading-none">Category</label>
               <div className="relative">
                 <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Select 
+                <Select
                   className="pl-10 h-11"
                   options={categories.map(c => ({ label: c, value: c }))}
                   value={formData.category}
