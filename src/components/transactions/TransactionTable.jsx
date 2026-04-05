@@ -70,17 +70,17 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-3">
                 <div className={cn(
-                  "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
-                  transaction.type === 'income' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30" : "bg-rose-50 text-rose-600 dark:bg-rose-950/30"
+                  "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm",
+                  transaction.type === 'income' ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20" : "bg-rose-50 text-rose-600 dark:bg-rose-950/20"
                 )}>
                   {transaction.type === 'income' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
                 </div>
-                <div>
-                  <p className="font-bold text-foreground leading-none mb-1">{transaction.description}</p>
+                <div className="overflow-hidden">
+                  <p className="font-bold text-foreground leading-none mb-1 text-sm truncate">{transaction.description}</p>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{format(new Date(transaction.date), 'MMM dd, yyyy')}</p>
                 </div>
               </div>
-              <span className="px-2 py-1 rounded-lg text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-widest">
+              <span className="px-2 py-1 rounded-lg text-[9px] font-bold bg-muted/60 text-muted-foreground border border-border/50 uppercase tracking-widest">
                 {transaction.category}
               </span>
             </div>
@@ -98,7 +98,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-9 h-9 rounded-lg border-slate-200 dark:border-slate-800"
+                    className="w-9 h-9 rounded-lg border-border bg-card hover:bg-muted text-foreground transition-all active:scale-95"
                     onClick={() => onEdit(transaction)}
                   >
                     <Edit2 className="w-4 h-4" />
@@ -106,7 +106,7 @@ const TransactionTable = ({ onEdit, itemsCount }) => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-9 h-9 rounded-lg border-slate-200 dark:border-slate-800 hover:bg-rose-50 hover:text-rose-600"
+                    className="w-9 h-9 rounded-lg border-border bg-card hover:bg-rose-600/10 hover:text-rose-600 transition-all active:scale-95"
                     onClick={() => deleteTransaction(transaction.id)}
                   >
                     <Trash2 className="w-4 h-4" />
