@@ -128,8 +128,8 @@ const DashboardPage = () => {
               <CardTitle>Recent Transactions</CardTitle>
               <button className="text-sm font-medium text-primary hover:underline">View All</button>
             </CardHeader>
-            <CardContent>
-              <TransactionTable itemsCount={5} />
+            <CardContent className="p-0">
+              <TransactionTable itemsCount={7} />
             </CardContent>
           </Card>
         </div>

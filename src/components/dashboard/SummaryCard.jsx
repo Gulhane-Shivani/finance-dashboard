@@ -7,7 +7,7 @@ import { formatCurrency } from '../../utils/currency';
 
 const MiniChart = ({ type, isPositive }) => {
   const color = isPositive ? "#558776" : "#f43f5e"; // Sage green or Rose red
-  
+
   if (type === 'bar') {
     return (
       <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,24 +21,24 @@ const MiniChart = ({ type, isPositive }) => {
   if (type === 'line') {
     return (
       <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 35 L15 25 L30 30 L45 15 L60 5" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M0 40 L15 30 L30 35 L45 20 L60 10" stroke={color} strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M0 35 L15 25 L30 30 L45 15 L60 5" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M0 40 L15 30 L30 35 L45 20 L60 10" stroke={color} strokeWidth="3" strokeOpacity="0.3" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   }
   if (type === 'pie') {
     return (
       <svg width="100%" height="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="16" stroke={color} strokeWidth="6" strokeDasharray="75 100" strokeLinecap="round"/>
-        <circle cx="20" cy="20" r="16" stroke={color} strokeOpacity="0.2" strokeWidth="6" strokeDasharray="15 100" strokeLinecap="round" transform="rotate(-90 20 20)"/>
+        <circle cx="20" cy="20" r="16" stroke={color} strokeWidth="6" strokeDasharray="75 100" strokeLinecap="round" />
+        <circle cx="20" cy="20" r="16" stroke={color} strokeOpacity="0.2" strokeWidth="6" strokeDasharray="15 100" strokeLinecap="round" transform="rotate(-90 20 20)" />
       </svg>
     );
   }
   if (type === 'area') {
     return (
       <svg width="100%" height="100%" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 25 L15 15 L30 25 L45 10 L60 20 V40 H0 Z" fill={color} fillOpacity="0.2"/>
-        <path d="M0 25 L15 15 L30 25 L45 10 L60 20" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M0 25 L15 15 L30 25 L45 10 L60 20 V40 H0 Z" fill={color} fillOpacity="0.2" />
+        <path d="M0 25 L15 15 L30 25 L45 10 L60 20" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   }
