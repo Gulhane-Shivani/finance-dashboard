@@ -55,8 +55,11 @@ const TransactionsPage = () => {
           <p className="text-muted-foreground">Manage and track your flow of funds.</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="gap-2 rounded-lg" onClick={handleExportCSV}>
-            <Download className="w-4 h-4 " /> Export
+          <Button 
+            className="h-10 gap-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md hover:bg-slate-800 dark:hover:bg-slate-200 transition-all font-bold px-5" 
+            onClick={handleExportCSV}
+          >
+            <Download className="w-4 h-4" /> Export
           </Button>
           {role === 'admin' && (
             <Button className="gap-2 rounded-lg" onClick={handleAdd}>
